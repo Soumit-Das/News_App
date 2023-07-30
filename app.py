@@ -1,6 +1,7 @@
 import requests
 import json
 from flask import Flask
+from datetime import datetime,timedelta
 
 app = Flask(__name__)
 
@@ -26,9 +27,13 @@ urlTwo = "https://newsapi.org/v2/top-headlines/sources?apiKey=1fcc74500ce5439abd
 
 @app.route("/news/<topic>")
 def news(topic):
-    url = f"https://newsapi.org/v2/everything?q={topic}&from=2023-06-28&sortBy=publishedAt&apiKey=1fcc74500ce5439abd865dbb5eef9037"
+    yesterday_datetime = datetime.now() - timedelta(days=1)
+    yesterday_date = yesterday_datetime.strftime('%Y-%m-%d')
+    print(yesterday_date)
+    url = f"https://newsapi.org/v2/everything?q={topic}&from={yesterday_date}&sortBy=publishedAt&language=en&pageSize=100&apiKey=1fcc74500ce5439abd865dbb5eef9037"
     req = requests.get(url)
     news = json.loads(req.text)
+    # print(news)
     return news
 
 

@@ -8,3 +8,10 @@ ul{
     margin-left: 80px;
     
 }
+#newsdivs{
+    margin: 20px 10px;
+}
+#newsdivs div{
+    margin: 10px;
+    /* width: ; */
+}

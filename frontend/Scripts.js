@@ -78,11 +78,16 @@ searchBtn.addEventListener("click", function(event) {
     news()
 });
 
+
+
+
 function news() {
-    fetch(`https://newsapi.org/v2/everything?q=${topic}&from=2023-06-28&sortBy=publishedAt&apiKey=1fcc74500ce5439abd865dbb5eef9037`)
+    // fetch(`https://newsapi.org/v2/everything?q=${topic}&sortBy=publishedAt&apiKey=1fcc74500ce5439abd865dbb5eef9037`)
+    fetch("http://localhost:8088/news/"+topic)
       .then(response => response.json())
       .then(data => {
         newsDataArr = data.articles
+        console.log(newsDataArr)
         displayNews()
       })
       .catch(error => {
